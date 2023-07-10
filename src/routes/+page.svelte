@@ -1,1 +1,1 @@
-<h1 class="text-green">Hi Mom!</h1>
+<h1 class="text-green-400">Hi Mom!</h1>
