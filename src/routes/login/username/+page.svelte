@@ -7,17 +7,24 @@
   let loading = false
   let isAvailable = false
 
+  let debounceTimer: NodeJS.Timeout
+
   async function checkAvailability() {
     isAvailable = false
+    clearTimeout(debounceTimer)
+
     loading = true
 
-    console.log("checking availabilty of", username)
+    debounceTimer = setTimeout(async () => {
+      console.log("checking availabilty of", username)
 
-    const ref = doc(db, "usernames", username)
-    const exists = await getDoc(ref)
+      const ref = doc(db, "usernames", username)
+      const exists = await getDoc(ref)
 
-    isAvailable = !exists
-    loading = false
+      isAvailable = !exists
+      loading = false
+    }, 500)
+
   }
   
   async function confirmUsername() {}
