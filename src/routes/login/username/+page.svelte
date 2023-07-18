@@ -12,7 +12,7 @@
 
   $: isValid = username?.length > 2 && username.length < 16 && re.test(username)
   $: isTouched = username.length > 0
-  $: isTake = isValid && !isAvailable && !loading
+  $: isTaken = isValid && !isAvailable && !loading
 
   async function checkAvailability() {
     isAvailable = false
@@ -70,11 +70,52 @@
       class="input w-full"
       bind:value={username}
       on:input={checkAvailability}
+      class:input-error={(!isValid && isTouched)}
+      class:input-warning={isTaken}
+      class:input-success={isAvailable && isValid && !loading}
     />
 
-    <p>Is available? {isAvailable}</p>
-
-    <button class="btn btn-success">Confirm username @{username} </button>
+    <div class="my-4 min-h-16 px-8 w-full">
+      {#if loading}
+        <p class="text-secondary">Checking availability of @{username}...</p>
+      {/if}
+  
+      {#if !isValid && isTouched}
+        <p class="text-error text-sm">
+          must be 3-16 characters long, alphanumeric only
+        </p>
+      {/if}
+  
+      {#if isValid && !isAvailable && !loading}
+        <p class="text-warning text-sm">
+          @{username} is not available
+        </p>
+      {/if}
+  
+      {#if isAvailable}
+        <button class="btn btn-success">Confirm username @{username} </button>
+      {/if}
+    </div><div class="my-4 min-h-16 px-8 w-full">
+      {#if loading}
+        <p class="text-secondary">Checking availability of @{username}...</p>
+      {/if}
+  
+      {#if !isValid && isTouched}
+        <p class="text-error text-sm">
+          must be 3-16 characters long, alphanumeric only
+        </p>
+      {/if}
+  
+      {#if isValid && !isAvailable && !loading}
+        <p class="text-warning text-sm">
+          @{username} is not available
+        </p>
+      {/if}
+  
+      {#if isAvailable}
+        <button class="btn btn-success">Confirm username @{username} </button>
+      {/if}
+    </div>
 
   </form>
 </AuthCheck>
