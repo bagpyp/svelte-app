@@ -17,6 +17,10 @@
   async function checkAvailability() {
     isAvailable = false
     clearTimeout(debounceTimer)
+    if (!isValid) {
+      loading = false;
+      return;
+    }
 
     loading = true
 
@@ -24,7 +28,7 @@
       console.log("checking availabilty of", username)
 
       const ref = doc(db, "usernames", username)
-      const exists = await getDoc(ref)
+      const exists = await getDoc(ref).then((doc) => doc.exists())
 
       isAvailable = !exists
       loading = false
@@ -54,11 +58,7 @@
 
     username = '';
     isAvailable = false;
-
   }
-
-  
-
 </script>
 
 <AuthCheck>
@@ -76,26 +76,6 @@
     />
 
     <div class="my-4 min-h-16 px-8 w-full">
-      {#if loading}
-        <p class="text-secondary">Checking availability of @{username}...</p>
-      {/if}
-  
-      {#if !isValid && isTouched}
-        <p class="text-error text-sm">
-          must be 3-16 characters long, alphanumeric only
-        </p>
-      {/if}
-  
-      {#if isValid && !isAvailable && !loading}
-        <p class="text-warning text-sm">
-          @{username} is not available
-        </p>
-      {/if}
-  
-      {#if isAvailable}
-        <button class="btn btn-success">Confirm username @{username} </button>
-      {/if}
-    </div><div class="my-4 min-h-16 px-8 w-full">
       {#if loading}
         <p class="text-secondary">Checking availability of @{username}...</p>
       {/if}
