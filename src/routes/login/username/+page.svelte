@@ -6,8 +6,13 @@
   let username = ""
   let loading = false
   let isAvailable = false
-
   let debounceTimer: NodeJS.Timeout
+
+  const re = /^(?=[a-zA-Z0-9._]{3,16}$)(?!.*[_.]{2})[^_.].*[^_.]$/
+
+  $: isValid = username?.length > 2 && username.length < 16 && re.test(username)
+  $: isTouched = username.length > 0
+  $: isTake = isValid && !isAvailable && !loading
 
   async function checkAvailability() {
     isAvailable = false
