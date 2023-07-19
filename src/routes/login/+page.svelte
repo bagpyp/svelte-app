@@ -1,12 +1,13 @@
 <script lang="ts">
-  import { auth, user } from "$lib/firebase"
-  import { GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth"
+  import { auth, user } from "$lib/firebase";
+
+  import { GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
 
   async function signInWithGoogle() {
-    const provider = new GoogleAuthProvider()
-    const credential = await signInWithPopup(auth, provider)
-    
-    const idToken = await credential.user.getIdToken()
+    const provider = new GoogleAuthProvider();
+    const credential = await signInWithPopup(auth, provider);
+
+    const idToken = await credential.user.getIdToken();
 
     const res = await fetch("/api/signin", {
       method: "POST",
