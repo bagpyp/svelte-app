@@ -12,7 +12,7 @@
 <h2>Login</h2>
 
 {#if $user}
-    <h2 class="card-title">Welcom, {$user.displayName}</h2>
+    <h2 class="card-title">Welcome, {$user.displayName}</h2>
     <p class="text-center text-success">You are logged in</p>
     <button class="btn btn-danger" on:click={() => signOut(auth)}>Sign out</button>
 {:else}
