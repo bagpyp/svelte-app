@@ -1,6 +1,9 @@
 <script>
   import { userData } from "$lib/firebase";
 
+  import { auth } from "$lib/firebase";
+  import { signOut } from "firebase/auth";
+
 </script>
 
 <svelte:head>
@@ -17,6 +20,7 @@
         <p class="py-6 text-2xl">One simple link to share your entire developer portfolio</p>
         {#if $userData?.username}
           <a href="/{$userData.username}/edit" class="btn btn-primary">Edit Profile</a>
+          <button class="btn btn-danger" on:click={() => signOut(auth)}>Sign out</button>
         {:else}
           <a href="/login" class="btn btn-primary">Get Started</a>
           <a href="/bagpyp" class="btn btn-secondary">Example Profile</a>

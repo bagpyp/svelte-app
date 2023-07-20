@@ -1,7 +1,8 @@
 import { v as validate_store, s as subscribe } from "../../../../chunks/utils.js";
-import { c as create_ssr_component, f as createEventDispatcher, b as each, a as add_attribute, e as escape, v as validate_component } from "../../../../chunks/ssr.js";
+import { c as create_ssr_component, d as createEventDispatcher, b as each, a as add_attribute, e as escape, v as validate_component } from "../../../../chunks/ssr.js";
 import { p as page } from "../../../../chunks/stores.js";
 import { u as userData, a as user } from "../../../../chunks/firebase.js";
+import { U as UserLink } from "../../../../chunks/UserLink.js";
 import "firebase/firestore";
 import { w as writable } from "../../../../chunks/index2.js";
 const SortableList_svelte_svelte_type_style_lang = "";
@@ -22,18 +23,6 @@ const SortableList = create_ssr_component(($$result, $$props, $$bindings, slots)
       item.id === isOver ? "over" : ""
     ].join(" ").trim()}"${add_attribute("data-index", index, 0)}${add_attribute("data-id", item.id, 0)} draggable="true">${slots.default ? slots.default({ item, index }) : ``} </li>`;
   })}</ul>` : `<p class="text-center my-12 text-lg font-bold" data-svelte-h="svelte-1jmwi8z">No items</p>`}`;
-});
-const UserLink = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  let { icon = "default" } = $$props;
-  let { url = "foo" } = $$props;
-  let { title = "some cool title" } = $$props;
-  if ($$props.icon === void 0 && $$bindings.icon && icon !== void 0)
-    $$bindings.icon(icon);
-  if ($$props.url === void 0 && $$bindings.url && url !== void 0)
-    $$bindings.url(url);
-  if ($$props.title === void 0 && $$bindings.title && title !== void 0)
-    $$bindings.title(title);
-  return `<a${add_attribute("href", url, 0)} class="stack w-full max-w-md text-center bg-base-300 flex justify-center items-center p-4 rounded-lg not-prose no-underline"><img${add_attribute("src", `/${icon}.png`, 0)}${add_attribute("alt", icon, 0)} width="32" height="32" class="w-8"> <span class="text-lg text-white font-bold">${escape(title)}</span></a>`;
 });
 const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let $userData, $$unsubscribe_userData;

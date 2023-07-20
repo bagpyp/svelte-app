@@ -92,7 +92,7 @@
             href={`/${$userData?.username}`}
             class="link link-accent"
           >
-            https://kung.foo/{$userData?.username}
+            https://bagpyp-9de3b.web.app/{$userData?.username}
           </a>
         </p>
       </div>

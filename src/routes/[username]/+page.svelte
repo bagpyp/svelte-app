@@ -1,7 +1,7 @@
 <script lang="ts">
     import UserLink from "$lib/components/UserLink.svelte";
     import type { PageData } from "./$types";
-    
+    import { userData } from "$lib/firebase";
     export let data: PageData;
 </script>
 
@@ -13,7 +13,7 @@
 
 <main class="prose text-center mx-auto mt-8">
 
-    <h1 class="text-7xl text-purple-500">
+    <h1 class="text-5xl text-purple-500 my-10">
         @{data.username}
     </h1>
 
@@ -32,5 +32,13 @@
             </li>
         {/each}
     </ul>
+
+
+    {#if $userData && $userData.username === data.username}
+        <a href="/{$userData.username}/edit" class="btn btn-primary my-10">Edit Profile</a>
+    {/if}
+
+
+
 
 </main>

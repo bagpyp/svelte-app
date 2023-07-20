@@ -77,11 +77,6 @@ function validate_component(component, name) {
   }
   return component;
 }
-function debug(file, line, column, values) {
-  console.log(`{@debug} ${file ? file + " " : ""}(${line}:${column})`);
-  console.log(values);
-  return "";
-}
 let on_destroy;
 function create_ssr_component(fn) {
   function $$render(result, props, bindings, slots, context) {
@@ -129,9 +124,8 @@ export {
   add_attribute as a,
   each as b,
   create_ssr_component as c,
-  debug as d,
+  createEventDispatcher as d,
   escape as e,
-  createEventDispatcher as f,
   getContext as g,
   missing_component as m,
   setContext as s,

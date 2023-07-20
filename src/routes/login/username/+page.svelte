@@ -47,7 +47,7 @@
       links: [
         {
           title: "Test Link",
-          url: "https://kung.foo",
+          url: "https://bagpyp-9de3b.web.app/",
           icon: "custom",
         },
       ],
